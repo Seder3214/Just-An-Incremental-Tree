@@ -72,7 +72,7 @@ addLayer("b", {
            },
            tEffect() {
             let x = new Decimal(2)
-            return x = x.mul(player.b.lineThreeLength).div(new Decimal(2).add(1).pow(0.35))
+            return x = x.mul(player.b.lineThreeLength).div(new Decimal(2).add(1).pow(0.35)).max(1)
                },
     clickables: {
         11: {
@@ -106,7 +106,7 @@ addLayer("b", {
             },
         },
         13: {
-            unlocked(){return true},
+            unlocked(){return hasUpgrade("b", 13)},
             cost(){let cost = new Decimal(200)
                 return cost.mul(player.b.lineThreeLength.add(1).pow(1.25)).floor()},
             title() {return "Extend Ternary Code"},
