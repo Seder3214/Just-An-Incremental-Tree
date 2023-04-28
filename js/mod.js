@@ -51,12 +51,12 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
-	"Current Endgame: b = 3.00"
+	"Current Endgame: b = 3.00, a = 10.00"
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return buyableEffect("b",11).gte(10) && buyableEffect("b",12).gte(3)
 }
 
 
