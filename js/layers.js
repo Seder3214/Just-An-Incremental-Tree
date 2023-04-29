@@ -64,7 +64,7 @@ addLayer("b", {
     },
     zEffect() {
  let x = new Decimal(1)
- return x = x.add(hasUpgrade('b',11)?buyableEffect("b",11):0).mul(player.b.lineZeroLength.mul(player.b.lineLength.gte(30)?buyableEffect("b",12):0).add(1).pow(new Decimal(0.75)))
+ return x = x.add(hasUpgrade('b',11)?buyableEffect("b",11):0).mul(player.b.lineZeroLength.mul(player.b.lineLength.gte(30)?buyableEffect("b",12):1).add(1).pow(new Decimal(0.75)))
     },
     oEffect() {
         let x = new Decimal(1)
