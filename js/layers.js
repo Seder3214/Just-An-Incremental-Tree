@@ -160,13 +160,13 @@ addLayer("b", {
     buyables: {
         11: {
             unlocked() {return hasUpgrade("b",11)},
-            cost(x) { return new Decimal(100).mul(x.add(1).pow(3)) },
+            cost(x) { return new Decimal(100).pow(x.add(1).div(1.75)) },
             title() { return "Increase <b>[a]</b> value" },
             display() {return "<br><b><h2>Cost:</h2> " + format(this.cost())+ " Points</b><br><b><h2>Amount:</h3> " + format(player.b.buyables[11]) + "</b><br><b><h2>Variable Value:</h3> " + format(this.effect()) + "</b>"},
             canAfford() { return player.points.gte(this.cost()) },
             effect(x) {
                 let eff = new Decimal(1.25)
-                eff = eff.mul(x)
+                eff = eff.mul(x).add(1)
                 return eff
             },
             buy() {
@@ -176,13 +176,13 @@ addLayer("b", {
         },
         12: {
             unlocked() {return player.b.lineLength.gte(30)},
-            cost(x) { return new Decimal(40000).mul(x.add(1).pow(1.75)) },
+            cost(x) { return new Decimal(40000).pow(x.add(1).div(3.25)) },
             title() { return "Increase <b>[b]</b> value" },
             display() {return "<br><b><h2>Cost:</h2> " + format(this.cost())+ " Points</b><br><b><h2>Amount:</h3> " + format(player.b.buyables[12]) + "</b><br><b><h2>Variable Value:</h3> " + format(this.effect()) + "</b>"},
             canAfford() { return player.points.gte(this.cost()) },
             effect(x) {
-                let eff = new Decimal(1.5)
-                eff = eff.mul(x)
+                let eff = new Decimal(0.3)
+                eff = eff.add(1).mul(x)
                 return eff
             },
             buy() {
