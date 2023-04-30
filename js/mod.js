@@ -51,7 +51,7 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
-	"Current Endgame: b = 3.00, a = 10.00"
+	"Current Endgame: b = 3.00, a = 6.00"
 ]
 
 // Determines when the game "ends"
