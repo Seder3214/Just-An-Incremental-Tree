@@ -8,7 +8,7 @@ addLayer("b", {
         lineLength: new Decimal(0),
         lineZeroLength: new Decimal(0),
         lineOneLength: new Decimal(0),
-        lineThreeLength: new Decimal(0),
+        lineTwoLength: new Decimal(0),
         binary: "",
     }},
     color: "#bf13b6",
@@ -72,7 +72,7 @@ addLayer("b", {
            },
            tEffect() {
             let x = new Decimal(2)
-            return x = x.mul(player.b.lineThreeLength).div(new Decimal(2).add(1).pow(0.35)).max(1)
+            return x = x.mul(player.b.lineTwoLength).div(new Decimal(2).add(1).pow(0.35)).max(1)
                },
     clickables: {
         11: {
@@ -108,14 +108,14 @@ addLayer("b", {
         13: {
             unlocked(){return hasUpgrade("b", 13)},
             cost(){let cost = new Decimal(200)
-                return cost.mul(player.b.lineThreeLength.add(1).pow(1.5)).floor()},
+                return cost.mul(player.b.lineTwoLength.add(1).pow(1.5)).floor()},
             title() {return "Extend Ternary Code"},
             display() {return "Add 2 to line.<br> Req: " + format(this.cost()) + " Binaries"},
             canClick() {return player.b.points.gte(this.cost())},
             onClick() {
                 player.b.points = player.b.points.sub(this.cost())
                 player.b.lineLength = player.b.lineLength.add(1)
-                player.b.lineThreeLength = player.b.lineThreeLength.add(1)
+                player.b.lineTwoLength = player.b.lineTwoLength.add(1)
                 return player.b.binary += "2"
             },
         },
@@ -131,8 +131,9 @@ addLayer("b", {
             if (player.b.lineLength.gte(30))  bin = "Binary (0): 1 + "+  format(buyableEffect("b",11))+ " * ( ( <b>0</b> * " + format(buyableEffect("b",12)) + "(b) + 1 )<sup>0.75" +" </sup><br> Binary (1): 1 + "+  format(buyableEffect("b",11))+ "(a)/4 * ( ( <b>1</b> + 1 )<sup>0.75</sup>)"
             if (player.b.lineLength.lt(10)) next = "New row of upgrades at 10 digits in code."
             if (player.b.lineLength.gte(10) && player.b.lineLength.lt(30)) next = "New variable at 30 digits in code."
+            if (player.b.lineLength.gte(30)) return  "Your ternary code: <br>" + " 0's: " + format(player.b.lineZeroLength) + "<br> 1's: " + format(player.b.lineOneLength) + "<br> 2's: " + format(player.b.lineTwoLength) + " ( Total Length: " + format(player.b.lineLength) + " Digits)<br>" + next + "<br>Amount of <b>0</b> in code: Increases point gain by " + format(tmp.b.zEffect) + "x. <br> Amount of <b>1</b> in code: Reduces binary (0; 1) extend cost by /" + format(tmp.b.oEffect) + "<br> Amount of <b>2</b> in code: Boosts binaries gain by "+ format(tmp.b.tEffect) + "x <br>Formulas: <br>" + bin + "<br>" + ter
             if (hasUpgrade("b", 13)) return  "Your ternary code: <br>" + player.b.binary + " (Length: " + format(player.b.lineLength) + " Digits)<br>" + next + "<br>Amount of <b>0</b> in code: Increases point gain by " + format(tmp.b.zEffect) + "x. <br> Amount of <b>1</b> in code: Reduces binary (0; 1) extend cost by /" + format(tmp.b.oEffect) + "<br> Amount of <b>2</b> in code: Boosts binaries gain by "+ format(tmp.b.tEffect) + "x <br>Formulas: <br>" + bin + "<br>" + ter
-               else return "Your binary code: <br>" + player.b.binary + " (Length: " + format(player.b.lineLength) + " Digits)<br>" + next + "<br>Amount of <b>0</b> in code: Increases point gain by " + format(tmp.b.zEffect) + "x. <br> Amount of <b>1</b> in code: Reduces binary (0; 1) extend cost by /" + format(tmp.b.oEffect) + "<br>Formulas: <br>" + bin + "<br>" + ter },
+            else return "Your binary code: <br>" + player.b.binary + " (Length: " + format(player.b.lineLength) + " Digits)<br>" + next + "<br>Amount of <b>0</b> in code: Increases point gain by " + format(tmp.b.zEffect) + "x. <br> Amount of <b>1</b> in code: Reduces binary (0; 1) extend cost by /" + format(tmp.b.oEffect) + "<br>Formulas: <br>" + bin + "<br>" + ter },
         },
     },
     upgrades: {
