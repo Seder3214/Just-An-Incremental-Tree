@@ -108,7 +108,7 @@ addLayer("b", {
         13: {
             unlocked(){return hasUpgrade("b", 13)},
             cost(){let cost = new Decimal(200)
-                return cost.mul(player.b.lineThreeLength.add(1).pow(1.25)).floor()},
+                return cost.mul(player.b.lineThreeLength.add(1).pow(1.5)).floor()},
             title() {return "Extend Ternary Code"},
             display() {return "Add 2 to line.<br> Req: " + format(this.cost()) + " Binaries"},
             canClick() {return player.b.points.gte(this.cost())},
